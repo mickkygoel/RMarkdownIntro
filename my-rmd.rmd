@@ -1,0 +1,58 @@
+---
+title: "My Rmd Document"
+author: "Mayank Goel"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::html_document2
+bibliography: bibliography.bib
+link-citations: yes
+---
+
+Here is some inline code `r 1+1`
+
+##May the force be with you
+
+```{r, starwars-plot, fig.cap = "a ggplot of Starwars data"}
+
+library(tidyverse)
+
+starwars %>%
+  filter(species == "Human") %>%
+ggplot() +
+  aes(x=height,
+      y = mass) +
+  geom_point()
+```
+
+Now see my table
+
+``` {r starwars-tbl}
+starwars %>%
+  filter(species == "Human") %>%
+  select(name,
+  height,
+  mass,
+  homeworld) %>%
+  knitr::kable(caption = "A knitr kable table of starwars data")
+```
+
+We can see in plot of data in Figure \@ref(fig:starwars-plot) ...
+
+We can see in Star Wars data in Table \@ref(tab:starwars-tbl)...
+
+...
+```{r, myfig, fig.cap = "a pic of Starwars logo"}
+
+knitr::include_graphics("https://lumiere-a.akamaihd.net/v1/images/og-generic_02031d2b.png?region=0%2C0%2C1200%2C1200")
+
+```
+We can see in Star Wars log in Figure \@ref(fig:myfig) ...
+
+These are my in-text citations regarding Star Wars.
+
+- For more information on Star Wars can be found in the book [@lucas1977star].
+- Means gives a new perspective on StarWars in this article [see @means1985star].
+
+
+In the end, I have included reference list.
+
+# References
